@@ -1,0 +1,11 @@
+Server:
+  Host: 0.0.0.0
+  Port: 7979
+
+Hooks:
+  Hook1:
+    Name: Hooker1
+    Type: aliyun_registry_hooker
+    RequestPath: /hooks/123456789
+    WorkDir: /Users/mw82/projects/hookme/scripts
+    Command: aliyun-registry-hookme.sh

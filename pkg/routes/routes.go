@@ -17,6 +17,11 @@ const (
 
 type MethodCollection []string
 
+type IRouter interface {
+	AddRoute(path string, methods MethodCollection, handler http.HandlerFunc)
+	ServeHTTP(w http.ResponseWriter, r *http.Request)
+}
+
 type route struct {
 	methods []string
 	regex   *regexp.Regexp
@@ -31,7 +36,7 @@ type router struct {
 
 var Router = &router{}
 
-func (router *router) AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) *router {
+func (router *router) AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) {
 	router.routes = append(router.routes,
 		route{
 			methods: methods,
@@ -39,14 +44,12 @@ func (router *router) AddRoute(path string, methods MethodCollection, handler ht
 			handler: handler,
 		},
 	)
-
-	return router
 }
 
 type contextKey struct{}
 
-func (table routeTable) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	for _, route := range table {
+func (router *router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	for _, route := range router.routes {
 		matches := route.regex.FindStringSubmatch(r.URL.Path)
 		if len(matches) > 0 {
 			exists := false
@@ -68,10 +71,6 @@ func (table routeTable) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.NotFound(w, r)
-}
-
-func (router *router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	router.routes.ServeHTTP(w, r)
 }
 
 func GetParam(r *http.Request, index int) string {

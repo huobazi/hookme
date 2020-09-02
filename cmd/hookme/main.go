@@ -35,9 +35,8 @@ func main() {
 	fmt.Println("* Listening on tcp://", addr)
 	fmt.Println("Use Ctrl-C to stop")
 
-	routes.Router.
-		AddRoute("/hello", routes.MethodCollection{routes.GET}, hello).
-		AddRoute("/hello/([^/]+)", routes.MethodCollection{routes.GET}, helloByName)
+	routes.Router.AddRoute("/hello", routes.MethodCollection{routes.GET}, hello)
+	routes.Router.AddRoute("/hello/([^/]+)", routes.MethodCollection{routes.GET}, helloByName)
 
 	for _, cfg := range conf.Hooks {
 		if cfg.Type == "aliyun_registry_hooker" {

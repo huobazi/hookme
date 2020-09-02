@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/spf13/viper"
 	"github.com/huobazi/hookme/pkg/voiceover"
+	"github.com/spf13/viper"
 )
 
 var (

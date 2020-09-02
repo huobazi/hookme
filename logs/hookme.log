@@ -387,3 +387,23 @@
 {"level":"info","msg":"TAG is \"latest\"","time":"01 Sep 20 22:35 CST"}
 {"level":"info","msg":"PUSHED_AT is \"2016-11-29 12:25:46\"","time":"01 Sep 20 22:35 CST"}
 {"level":"info","msg":"DIGEST is \"sha256:457f4aa83fc9a6663ab9d1b0a6e2dce25a12a943ed5bf2c1747c58d48bbb4917\"","time":"01 Sep 20 22:35 CST"}
+{"level":"info","msg":"STDIN is : {","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"  \"push_data\": {","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"digest\": \"sha256:457f4aa83fc9a6663ab9d1b0a6e2dce25a12a943ed5bf2c1747c58d48bbb4917\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"pushed_at\": \"2016-11-29 12:25:46\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"tag\": \"latest\"","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"  },","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"  \"repository\": {","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"date_created\": \"2016-10-28 21:31:42\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"name\": \"repoTest\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"namespace\": \"namespace\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"region\": \"cn-hangzhou\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"repo_authentication_type\": \"NO_CERTIFIED\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"repo_full_name\": \"namespace/repoTest\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"repo_origin_type\": \"NO_CERTIFIED\",","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"    \"repo_type\": \"PUBLIC\"","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"  }","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"}","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"TAG is \"latest\"","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"PUSHED_AT is \"2016-11-29 12:25:46\"","time":"02 Sep 20 21:25 CST"}
+{"level":"info","msg":"DIGEST is \"sha256:457f4aa83fc9a6663ab9d1b0a6e2dce25a12a943ed5bf2c1747c58d48bbb4917\"","time":"02 Sep 20 21:25 CST"}

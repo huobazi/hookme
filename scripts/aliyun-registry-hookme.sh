@@ -1,4 +1,7 @@
 #!/bin/bash
+#----------------------------------------------------
+# This is a example for jq read the json from stdin
+#----------------------------------------------------
 STDIN=$(cat - | jq .)
 echo "STDIN is : $STDIN"
 

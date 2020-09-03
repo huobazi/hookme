@@ -23,7 +23,7 @@ func helloByName(w http.ResponseWriter, r *http.Request) {
 }
 
 func addRoute(hooker hooker.IHooker) {
-	routes.Router.AddRoute(hooker.GetRequestPath(), hooker.GetHttpMethods(), hooker.Hook)
+	routes.AddRoute(hooker.GetRequestPath(), hooker.GetHttpMethods(), hooker.Hook)
 }
 
 func main() {
@@ -35,8 +35,9 @@ func main() {
 	fmt.Println("* Listening on tcp://", addr)
 	fmt.Println("Use Ctrl-C to stop")
 
-	routes.Router.AddRoute("/hello", routes.MethodCollection{routes.GET}, hello)
-	routes.Router.AddRoute("/hello/([^/]+)", routes.MethodCollection{routes.GET}, helloByName)
+	router := routes.
+		AddRoute("/hello", routes.MethodCollection{routes.GET}, hello).
+		AddRoute("/hello/([^/]+)", routes.MethodCollection{routes.GET}, helloByName)
 
 	for _, cfg := range conf.Hooks {
 		if cfg.Type == "aliyun_registry_hooker" {
@@ -50,7 +51,7 @@ func main() {
 		}
 	}
 
-	err := http.ListenAndServe(addr, routes.Router)
+	err := http.ListenAndServe(addr, router)
 	if err != nil {
 		voiceover.Say("Hookme server running failed:", err)
 	}

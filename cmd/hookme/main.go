@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/huobazi/hookme/internal/config"
-	"github.com/huobazi/hookme/internal/constants"
 	"github.com/huobazi/hookme/internal/hooker"
 	"github.com/huobazi/hookme/pkg/routes"
 	"github.com/huobazi/hookme/pkg/voiceover"
@@ -14,11 +13,21 @@ var (
 	conf = config.Config
 )
 
+// Build version in compile-time
+// see also https://github.com/ahmetb/govvv
+var (
+	GitCommit  string
+	GitBranch  string
+	GitState   string
+	GitSummary string
+	BuildDate  string
+	Version    string
+)
+
 func hello(w http.ResponseWriter, _ *http.Request) {
-	_, _ = fmt.Fprintf(w, "Hookme server %s is starting ...\n", constants.HookmeVersion)
+	_, _ = fmt.Fprint(w, "Hookme server is starting ...\n")
 }
 func helloByName(w http.ResponseWriter, r *http.Request) {
-	_, _ = fmt.Fprintf(w, "Hookme server %s is starting ...\n", constants.HookmeVersion)
 	_, _ = fmt.Fprintf(w, "Hello %s \n", routes.GetParam(r, 0))
 }
 
@@ -31,7 +40,12 @@ func main() {
 	addr := fmt.Sprintf("%s:%d", conf.Server.Host, conf.Server.Port)
 
 	fmt.Println("Hookme server is starting ...")
-	fmt.Printf("* Version %s \n", constants.HookmeVersion)
+	fmt.Printf("* Version %s\t\n", Version)
+	fmt.Printf("* Build date %s\t\n", BuildDate)
+	fmt.Printf("* Git branch %s\t\n", GitBranch)
+	fmt.Printf("* Git summary %s\t\n", GitSummary)
+	fmt.Printf("* Git commit %s\t\n", GitCommit)
+	fmt.Printf("* Git state %s \t\n", GitState)
 	fmt.Println("* Listening on tcp://", addr)
 	fmt.Println("Use Ctrl-C to stop")
 

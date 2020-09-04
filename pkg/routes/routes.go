@@ -14,15 +14,15 @@ const (
 
 type MethodCollection []string
 
-type IRouter interface {
-	AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) IRouter
+type Router interface {
+	AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) Router
 	GetParam(r *http.Request, index int) string
 	ServeHTTP(w http.ResponseWriter, r *http.Request)
 }
 
 var defaultRouter = NewRegexRouter()
 
-func AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) IRouter {
+func AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) Router {
 	return defaultRouter.AddRoute(path, methods, handler)
 }
 

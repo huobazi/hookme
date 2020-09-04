@@ -17,11 +17,11 @@ type RegexRouter struct {
 	Tables []RegexRoute
 }
 
-func NewRegexRouter() IRouter {
+func NewRegexRouter() Router {
 	return &RegexRouter{}
 }
 
-func (router *RegexRouter) AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) IRouter {
+func (router *RegexRouter) AddRoute(path string, methods MethodCollection, handler http.HandlerFunc) Router {
 	router.Tables = append(router.Tables,
 		RegexRoute{
 			methods: methods,

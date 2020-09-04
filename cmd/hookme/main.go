@@ -31,7 +31,7 @@ func helloByName(w http.ResponseWriter, r *http.Request) {
 	_, _ = fmt.Fprintf(w, "Hello %s \n", routes.GetParam(r, 0))
 }
 
-func addRoute(hooker hooker.IHooker) {
+func addRoute(hooker hooker.Hooker) {
 	routes.AddRoute(hooker.GetRequestPath(), hooker.GetHttpMethods(), hooker.Hook)
 }
 

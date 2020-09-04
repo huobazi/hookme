@@ -14,7 +14,7 @@ import (
 	"syscall"
 )
 
-type IHooker interface {
+type Hooker interface {
 	GetRequestPath() string
 	GetHttpMethods() routes.MethodCollection
 	Hook(w http.ResponseWriter, r *http.Request)
@@ -86,6 +86,7 @@ func (h *BaseHooker) runCommand(args interface{}) (err error) {
 	return nil
 
 }
+
 func readIo(r io.Reader) {
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {

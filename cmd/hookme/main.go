@@ -62,6 +62,14 @@ func main() {
 				Command:     cfg.Command,
 			})
 			addRoute(h)
+		}else if cfg.Type == "docker_hub_hooker" {
+			h := hooker.NewDockerHubHooker(hooker.BaseHooker{
+				Name:        cfg.Name,
+				RequestPath: cfg.RequestPath,
+				WorkDir:     cfg.WorkDir,
+				Command:     cfg.Command,
+			})
+			addRoute(h)
 		}
 	}
 

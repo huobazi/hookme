@@ -4,14 +4,15 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
-	"github.com/huobazi/hookme/pkg/routes"
-	"github.com/huobazi/hookme/pkg/voiceover"
 	"io"
 	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"syscall"
+
+	"github.com/huobazi/hookme/pkg/routes"
+	"github.com/huobazi/hookme/pkg/voiceover"
 )
 
 type Hooker interface {
@@ -85,6 +86,13 @@ func (h *BaseHooker) runCommand(args interface{}) (err error) {
 
 	return nil
 
+}
+
+func (h *BaseHooker) hookJsonBody(r *http.Request) (data interface{}, err error) {
+	defer r.Body.Close()
+	decoder := json.NewDecoder(r.Body)
+	err = decoder.Decode(&data)
+	return
 }
 
 func readIo(r io.Reader) {

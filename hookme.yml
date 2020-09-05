@@ -9,3 +9,9 @@ Hooks:
     RequestPath: /hooks/123456789
     WorkDir: /Users/mw82/projects/hookme/scripts
     Command: aliyun-registry-hookme.sh
+  Hook2:
+    Name: Hooker2
+    Type: docker_hub_hooker
+    RequestPath: /hooks/987654321
+    WorkDir: /Users/mw82/projects/hookme/scripts
+    Command: docker-hub-hookme.sh

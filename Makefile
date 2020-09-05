@@ -1,3 +1,4 @@
+BINARY = dist/hookme
 SHELL := /bin/bash
 BASEDIR = $(shell pwd)
 LDFLAGS = $(shell govvv -flags)
@@ -14,9 +15,9 @@ help:
 .PHONY: build
 build:
 	@echo "Build hookme with ldflags: $(LDFLAGS)"
-	@go build  -o dist/hookme -ldflags "$(LDFLAGS)" cmd/hookme/main.go
+	@go build  -o $(BINARY) -ldflags "$(LDFLAGS)" cmd/hookme/main.go
 
 
 .PHONY: clean
 clean:
-	rm -f dist/hookme
+	@if [ -f ${BINARY} ] ; then rm ${BINARY} ; fi

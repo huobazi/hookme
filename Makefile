@@ -1,10 +1,6 @@
-BINARY = dist/hookme
-SHELL := /bin/bash
-BASEDIR = $(shell pwd)
-LDFLAGS = $(shell govvv -flags)
 
 .PHONY: all
-all: build
+all: build release
 
 .PHONY: help
 help:
@@ -13,11 +9,17 @@ help:
 	@echo "make clean - remove binary file"
 
 .PHONY: build
-build:
-	@echo "Build hookme with ldflags: $(LDFLAGS)"
-	@go build  -o $(BINARY) -ldflags "$(LDFLAGS)" cmd/hookme/main.go
+build: deps
+	@bash scripts/build.sh
 
+release: clean deps ## Generate releases for all platforms
+	@bash scripts/release.sh
+
+
+.PHONY: deps
+deps: ## Install dependencies using go get
+	@go get -d -v -t ./...
 
 .PHONY: clean
 clean:
-	@if [ -f ${BINARY} ] ; then rm ${BINARY} ; fi
+	@bash scripts/clean.sh

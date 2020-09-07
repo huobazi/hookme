@@ -5,7 +5,8 @@ all: build release
 .PHONY: help
 help:
 	@echo "Usage:"
-	@echo "make - compile the source code"
+	@echo "make build - compile the source code"
+	@echo "make release - release for all platform"
 	@echo "make clean - remove binary file"
 
 .PHONY: build
@@ -14,7 +15,6 @@ build: deps
 
 release: clean deps ## Generate releases for all platforms
 	@bash scripts/release.sh
-
 
 .PHONY: deps
 deps: ## Install dependencies using go get

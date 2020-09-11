@@ -27,13 +27,17 @@ type hookTask struct {
 	Command     string
 }
 
-func init() {
-	viper.SetConfigName("hookme")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath(".")
-	viper.AddConfigPath("$HOME/.hookme")
-	viper.AddConfigPath("/etc/hookme/")
+func InitConfig(cfgFile string) {
+	if cfgFile != "" {
+		viper.SetConfigFile(cfgFile)
+	}else{
+		viper.SetConfigName("hookme")
+		viper.SetConfigType("yaml")
 
+		viper.AddConfigPath(".")
+		viper.AddConfigPath("$HOME/.hookme")
+		viper.AddConfigPath("/etc/hookme/")
+	}
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			voiceover.Sayf("Not found hookme config file.\n%s \n", err)

@@ -1,13 +1,15 @@
-package main
+package cmd
 
 import (
 	"context"
 	"fmt"
 	"github.com/huobazi/hookme/internal/config"
+	"github.com/huobazi/hookme/internal/constants"
 	"github.com/huobazi/hookme/internal/hooker"
 	"github.com/huobazi/hookme/pkg/routes"
 	"github.com/huobazi/hookme/pkg/voiceover"
 	"github.com/sony/sonyflake"
+	"github.com/spf13/cobra"
 	"net/http"
 	"os"
 	"os/signal"
@@ -15,8 +17,23 @@ import (
 	"time"
 )
 
+var serverCmd = &cobra.Command{
+	Use:   "server",
+	Short: "run server",
+	Long:  `This subcommand run hookme server`,
+	Run: func(cmd *cobra.Command, args []string) {
+		config.InitConfig(cfgFile)
+		startServer()
+	},
+}
+
+func init() {
+	serverCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/hookme.yaml)")
+	rootCmd.AddCommand(serverCmd)
+}
+
 var (
-	conf    			= config.Config
+	conf    			= &config.Config
 	snowflakeStartTime 	= time.Date(2020, 9, 1, 0, 0, 0, 0, time.UTC)
 	healthy int32
 )
@@ -25,17 +42,6 @@ type key int
 
 const (
 	requestIDKey key = 0
-)
-
-// Build version in compile-time
-// see also https://github.com/ahmetb/govvv
-var (
-	GitCommit  string
-	GitBranch  string
-	GitState   string
-	GitSummary string
-	BuildDate  string
-	Version    string
 )
 
 func hello(w http.ResponseWriter, _ *http.Request) {
@@ -55,16 +61,16 @@ func addRoute(hooker hooker.Hooker) {
 	routes.AddRoute(hooker.GetRequestPath(), hooker.GetHttpMethods(), hooker.Hook)
 }
 
-func main() {
+func startServer() {
 	addr := fmt.Sprintf("%s:%d", conf.Server.Host, conf.Server.Port)
 
 	fmt.Println("Hookme server is starting ...")
-	fmt.Printf("* Version %s\t\n", Version)
-	fmt.Printf("* Build date %s\t\n", BuildDate)
-	fmt.Printf("* Git branch %s\t\n", GitBranch)
-	fmt.Printf("* Git summary %s\t\n", GitSummary)
-	fmt.Printf("* Git commit %s\t\n", GitCommit)
-	fmt.Printf("* Git state %s \t\n", GitState)
+	fmt.Printf("* Version %s\t\n", constants.Version)
+	fmt.Printf("* Build date %s\t\n", constants.BuildDate)
+	fmt.Printf("* Git branch %s\t\n", constants.GitBranch)
+	fmt.Printf("* Git summary %s\t\n", constants.GitSummary)
+	fmt.Printf("* Git commit %s\t\n", constants.GitCommit)
+	fmt.Printf("* Git state %s \t\n", constants.GitState)
 	fmt.Println("* Listening on ", addr)
 	fmt.Println("Use Ctrl-C to stop")
 

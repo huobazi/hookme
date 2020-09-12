@@ -19,7 +19,7 @@ import (
 
 var serverCmd = &cobra.Command{
 	Use:   "server",
-	Short: "run server",
+	Short: "Run hookme server",
 	Long:  `This subcommand run hookme server`,
 	Run: func(cmd *cobra.Command, args []string) {
 		config.InitConfig(cfgFile)

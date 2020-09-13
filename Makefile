@@ -13,6 +13,7 @@ help:
 build: deps
 	@bash scripts/build.sh
 
+.PHONY: build
 release: clean deps ## Generate releases for all platforms
 	@bash scripts/release.sh
 

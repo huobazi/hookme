@@ -1,6 +1,7 @@
 # Hookme
 
-please hooke me ...
+A lightweight webhook receive server
+
 
 ## Hooker
 
@@ -14,3 +15,20 @@ please hooke me ...
 - [ ] [Coding repo push hooker](https://help.coding.net/docs/project/open/webhook.html)
 - [ ] [Gitee repo push hooker](https://gitee.com/help/categories/40)
 - [ ] [JIRA hooker](https://developer.atlassian.com/cloud/jira/platform/webhooks/)
+
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+## Contributors
+
+[Contributors List](https://github.com/huobazi/hookme/graphs/contributors).
+
+## License
+
+[MIT](https://github.com/huobazi/hookme/blob/master/LICENSE)

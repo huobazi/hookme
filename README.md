@@ -16,6 +16,11 @@ A lightweight webhook receive server
 - [ ] [Gitee repo push hooker](https://gitee.com/help/categories/40)
 - [ ] [JIRA hooker](https://developer.atlassian.com/cloud/jira/platform/webhooks/)
 
+## Build
+
+```bash
+make build
+```
 
 ## Contributing
 

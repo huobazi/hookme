@@ -21,6 +21,11 @@ A lightweight webhook receive server
 ```bash
 make build
 ```
+## Release
+
+```bash
+make release
+```
 
 ## Contributing
 
